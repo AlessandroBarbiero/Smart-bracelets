@@ -1,7 +1,12 @@
+#ifndef PRELOADED_KEY
+	#define PRELOADED_KEY "aaaaaaaaaaaaaaaaaaaa"
+#endif
 
 #include "contiki.h"
 #include "net/rime/rime.h"
 #include "random.h"
+#include "string.h"
+#include "stdbool.h"
 
 #include "dev/button-sensor.h"
 
@@ -10,7 +15,9 @@
 #include <stdio.h>
 #define DIM_KEY 20
 
-static char key[DIM_KEY];
+static char key[DIM_KEY] = PRELOADED_KEY;
+static bool pairing = true;
+static const linkaddr_t* addr;
 
 PROCESS(key_generation_process, "Key generation");
 PROCESS(Parent_bracelet_process, "Parent Bracelet");
@@ -31,64 +38,144 @@ PROCESS_THREAD(key_generation_process, ev, data)
   PROCESS_END();
 }
 
-/*---------------------------------------------------------------------------*/
+/*------------------------------- BROADCAST --------------------------------------------*/
 static void
 broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 {
-  printf("broadcast message received from %d.%d: '%s'\n",
-         from->u8[0], from->u8[1], (char *)packetbuf_dataptr());
+	if(strcmp((char *)packetbuf_dataptr(), key) == 0){
+		printf("Paired device -> key found, Address: %d.%d\n", from->u8[0], from->u8[1]);
+		pairing = false;
+		linkaddr_copy(addr, from);
+	//	addr = from;
+	}
+	else
+		printf("This is not my key\n");
+		
 }
 /* In this way I set the callback function on receive to the one just written above */
 static const struct broadcast_callbacks broadcast_call = {broadcast_recv};
 static struct broadcast_conn broadcast;
+
+
+//------------------------------ UNICAST --------------------------------------
+static void
+recv_uc(struct unicast_conn *c, const linkaddr_t *from)
+{
+  	//if(strcmp((char *)packetbuf_dataptr(), "Stop Pairing") == 0){
+		printf("Paired device -> unicast message received, Address: %d.%d\n", from->u8[0], from->u8[1]);
+		pairing = false;
+		linkaddr_copy(addr, from);
+	//}
+}
+
 /*---------------------------------------------------------------------------*/
+
+static void
+sent_uc(struct unicast_conn *c, int status, int num_tx)
+{
+
+	printf("Unicast sent\n");
+  const linkaddr_t *dest = packetbuf_addr(PACKETBUF_ADDR_RECEIVER);
+ // if(linkaddr_cmp(dest, &linkaddr_null)) {
+ //   return;
+ // }
+  printf("unicast message sent to %d.%d: status %d num_tx %d\n",
+    dest->u8[0], dest->u8[1], status, num_tx);
+}
+
+/*---------------------------------------------------------------------------*/
+static const struct unicast_callbacks unicast_callbacks = {recv_uc, sent_uc};
+static struct unicast_conn uc;
+/*---------------------------------------------------------------------------*/
+
+
+
+
+static void sendPairingMessage(){
+    
+    packetbuf_copyfrom(key, 21);
+    broadcast_send(&broadcast);
+    printf("Broadcast message sent: %s\n", key);
+	
+}
+
+static void operationMode(){
+	while(1){
+	;
+		//printf("work\n");
+	}
+}
+
+/*--------------------------- PARENT ------------------------------------------------*/
+
 PROCESS_THREAD(Parent_bracelet_process, ev, data)
 {
   static struct etimer et;
-
-  PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
+  
+  PROCESS_EXITHANDLER(unicast_close(&uc);)
 
   PROCESS_BEGIN();
+  
+  	broadcast_open(&broadcast, 129, &broadcast_call);
+  	
+  	unicast_open(&uc, 146, &unicast_callbacks);
+	printf("Open unicast connection\n");
+  	
+	while(pairing){
+		/* Delay 2 seconds */
+    	etimer_set(&et, CLOCK_SECOND * 2);
 
-// Broadcast_call will be our function custom defined to handle reeception o fbroadcast messages
-  broadcast_open(&broadcast, 129, &broadcast_call);
-  while(1) {
-    /* Delay 2-4 seconds */
-    etimer_set(&et, CLOCK_SECOND * 4 + random_rand() % (CLOCK_SECOND * 4));
-
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-
-    packetbuf_copyfrom("Hello", 6);
-    broadcast_send(&broadcast);
-    // printf("broadcast message sent\n");
-     printf("Number %s \n", key);
-  }
+    	PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+		sendPairingMessage();
+	}
+	broadcast_close(&broadcast);
+	printf("Closed broadcast connection\n");
+	
+	packetbuf_copyfrom(key, 21);
+	printf("Copy message in buffer \n");
+	unicast_send(&uc, addr);
+	printf("Message unicast sent\n");
+	
+	PROCESS_WAIT_EVENT();
+	printf("Start op mode\n");
+	operationMode();
 
   PROCESS_END();
 }
 
+//---------------------------- CHILD -----------------------------------------------
 
 PROCESS_THREAD(Child_bracelet_process, ev, data)
 {
   static struct etimer et;
-
-  PROCESS_EXITHANDLER(broadcast_close(&broadcast);)
+  
+  PROCESS_EXITHANDLER(unicast_close(&uc);)
 
   PROCESS_BEGIN();
+  
+  	broadcast_open(&broadcast, 129, &broadcast_call);
+  	
+  	unicast_open(&uc, 146, &unicast_callbacks);
+	printf("Open unicast connection\n");
+  	
+	while(pairing){
+		/* Delay 2 seconds */
+    	etimer_set(&et, CLOCK_SECOND * 2);
 
-// Broadcast_call will be our function custom defined to handle reeception o fbroadcast messages
-  broadcast_open(&broadcast, 129, &broadcast_call);
-  while(1) {
-    /* Delay 2-4 seconds */
-    etimer_set(&et, CLOCK_SECOND * 4 + random_rand() % (CLOCK_SECOND * 4));
-
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-
-    packetbuf_copyfrom("Hello", 6);
-    broadcast_send(&broadcast);
-    // printf("broadcast message sent\n");
-     printf("Number %s \n", key);
-  }
+    	PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+		sendPairingMessage();
+	}
+	broadcast_close(&broadcast);
+	printf("Closed broadcast connection\n");
+	
+	packetbuf_copyfrom(key, 21);
+	printf("Copy message in buffer \n");
+	unicast_send(&uc, addr);
+	printf("Message unicast sent\n");
+	
+	PROCESS_WAIT_EVENT();
+	printf("Start op mode\n");
+	operationMode();
 
   PROCESS_END();
 }
