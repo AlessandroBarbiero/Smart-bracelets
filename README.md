@@ -2,14 +2,13 @@
 
 ## Description
 
-In this work, we designed, implemented and tested a software prototype for smart bracelets. These braceletes are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far or falls. 
+In this work, we designed, implemented and tested a software prototype for smart bracelets. These braceletes are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far or falls. We worked on a Virtual Machine ([Oracle's VirtualBox](https://www.virtualbox.org/)), but is not necessary.
 
 ## Prerequisities
 
-* A Virtual Machine. We used [Oracle's VirtualBox](https://www.virtualbox.org/)
-* To have installed in the VM [Contiki](http://www.contiki-os.org/) Operating System
-* To have installed in the VM [Cooja](https://github.com/contiki-os/contiki/wiki/An-Introduction-to-Cooja) Network Simulator
-* To have installed in the VM [Node-RED](https://nodered.org/) Low-Code, Event-Driven Programming Tool 
+* [Contiki](http://www.contiki-os.org/) Operating System
+* [Cooja](https://github.com/contiki-os/contiki/wiki/An-Introduction-to-Cooja) Network Simulator
+* [Node-RED](https://nodered.org/) Low-Code, Event-Driven Programming Tool 
 
 ## How to use
 
@@ -19,7 +18,7 @@ In this work, we designed, implemented and tested a software prototype for smart
 * To simulate the system you just have to open Cooja and follow these steps
 * * Create a new simulation
 * * Add as many as sky-motes per type you want. We used two children and two parents.
-* * Start the simulation and see how the behavior changes as you change motes postion.
+* * Start the simulation and see how the behavior changes as you change motes position.
 
 ## How it operates
 
