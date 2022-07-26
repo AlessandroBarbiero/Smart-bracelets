@@ -2,7 +2,7 @@
 
 ## Description
 
-In this work, we designed, implemented and tested a software prototype for smart bracelets. These braceletes are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far. 
+In this work, we designed, implemented and tested a software prototype for smart bracelets. These braceletes are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far or falls. 
 
 ## Prerequisities
 
