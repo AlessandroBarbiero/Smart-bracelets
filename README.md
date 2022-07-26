@@ -19,7 +19,7 @@ In this work, we designed, implemented and tested a software prototype for smart
 * To simulate the system you just have to open Cooja and follow these steps
 * * Create a new simulation
 * * Add as many as sky-motes per type you want. We used two childs and two parents.
-* * Start the simulation and see how the behavior changes as you change the position motes.
+* * Start the simulation and see how the behavior changes as you change the motes postion.
 
 ## How it operates
 
