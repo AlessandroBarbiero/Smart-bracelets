@@ -11,6 +11,7 @@
 #include <stdio.h>
 #define DIM_KEY 20
 
+// Definition of Static Variables //
 static char key[DIM_KEY] = PRELOADED_KEY;
 static bool pairing = true;
 static bool unicastReceived = false;
@@ -44,11 +45,13 @@ static struct message_t{
 	enum STATUS status;
 } message;
 
-
+// Processes Definitions //
 PROCESS(key_generation_process, "Key generation");
 PROCESS(Parent_bracelet_process, "Parent Bracelet");
 PROCESS(Child_bracelet_process, "Child Bracelet");
 //--------------------------------- KEY GENERATION ----------------------------------
+
+// Generates 20 random printable characters
 PROCESS_THREAD(key_generation_process, ev, data)
 {
   PROCESS_BEGIN();
@@ -65,12 +68,16 @@ PROCESS_THREAD(key_generation_process, ev, data)
 }
 
 /*------------------------------- BROADCAST --------------------------------------------*/
+
+// This method manages the reception of broadcast messages
 static void
 broadcast_recv(struct broadcast_conn *c, const linkaddr_t *from)
 {
+	// Enter the method if we are in Pairing Phase and a Unicast has not been received yet
 	if(unicastReceived || !pairing)
 		return;	
 	
+	// If the message matches the key, it stops Pairing Phase and saves sender's address
 	if(strcmp((char *)packetbuf_dataptr(), key) == 0){
 		printf("Paired device -> key found, Address: %d.%d\n", from->u8[0], from->u8[1]);
 		pairing = false;
@@ -84,17 +91,26 @@ static const struct broadcast_callbacks broadcast_call = {broadcast_recv};
 static struct broadcast_conn broadcast;
 
 
-//------------------------------ UNICAST --------------------------------------
+// ------------------------------ UNICAST -------------------------------------- //
+
+// This method manages the reception of a Unicast Message
 static void
 recv_uc(struct unicast_conn *c, const linkaddr_t *from)
 {
-
+	
+	// If in Pairing Phase and the received message is a Stop Pairing
+	// It ends the Pairing Phase and saves the address of the sender
 	if(pairing && strcmp((char *)packetbuf_dataptr(), "Stop Pairing") == 0){
 		printf("Paired device -> unicast message received, Address: %d.%d\n", from->u8[0], from->u8[1]);
 		pairing = false;
 		unicastReceived = true;
 		linkaddr_copy(addr, from);
 	}
+	
+	// If the Parent mote is in Operation Mode 
+	// Checks if the address is the same of the children
+	// In the case saves the child's position and checks the Status
+	// If the status is FALLING fires a FALL ALARM
 	else if (operationMode && parent){
 		if (linkaddr_cmp(from, addr)){
 			messageArrived = true;
@@ -113,6 +129,7 @@ static const struct unicast_callbacks unicast_callbacks = {recv_uc};
 static struct unicast_conn uc;
 /*---------------------------------------------------------------------------*/
 
+// This method sends a Stop Pairing if itn't alreadu received one
 static void sendStopPairing(){
 	if(!unicastReceived){
 		packetbuf_copyfrom("Stop Pairing", 13);
@@ -121,7 +138,7 @@ static void sendStopPairing(){
 	}
 }
 
-
+// This Method sends a broadcast message containing the key
 static void sendPairingMessage(){
     
     packetbuf_copyfrom(key, 21);
@@ -130,11 +147,14 @@ static void sendPairingMessage(){
 	
 }
 
+// This method generates and sends as Unicast the INFO message
 static void sendInfo(){
 	
+	// X and Y coordinates are random variables
 	message.position.x = random_rand();
 	message.position.y = random_rand();
 	
+	// Status is a random variable following the 0.3, 0.3, 0.3 and 0.1 probability distribution
 	int rand = random_rand()%100;
 	if (rand < 30)       //  30%
     	message.status = 0;
@@ -162,12 +182,16 @@ PROCESS_THREAD(Parent_bracelet_process, ev, data)
   PROCESS_EXITHANDLER(unicast_close(&uc);)
 
   PROCESS_BEGIN();
+	
+	// Start Broadcast connection
   	parent = true;
   	broadcast_open(&broadcast, 129, &broadcast_call);
   	
+	// Starts Unicast Connection
   	unicast_open(&uc, 146, &unicast_callbacks);
 	printf("Open unicast connection\n");
   	
+	// Sends Pairing Message every 2 seconds
 	while(pairing){
 	
 		sendPairingMessage();
@@ -177,6 +201,9 @@ PROCESS_THREAD(Parent_bracelet_process, ev, data)
     	PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 		
 	}
+	
+	// Self-explaining
+	{
 	broadcast_close(&broadcast);
 	printf("Closed broadcast connection\n");
 	
@@ -184,8 +211,9 @@ PROCESS_THREAD(Parent_bracelet_process, ev, data)
 	
 	printf("Start op mode\n");
 	operationMode = true;
-	
+	}
 
+	// In Operation Mode, if it doesn't receive the unicast INFO message within 60 seconds it fires a MISSING ALARM
 	while(1){
 		messageArrived = false;
 		etimer_set(&et, CLOCK_SECOND * 60);
@@ -213,12 +241,16 @@ PROCESS_THREAD(Child_bracelet_process, ev, data)
   PROCESS_EXITHANDLER(unicast_close(&uc);)
 
   PROCESS_BEGIN();
+	
+	// Start Broadcast connection
   	parent = false;
   	broadcast_open(&broadcast, 129, &broadcast_call);
   	
+	// Start Unicast connection
   	unicast_open(&uc, 146, &unicast_callbacks);
 	printf("Open unicast connection\n");
   	
+	// Sends Pairing Message every 2 seconds
 	while(pairing){
 	
 		sendPairingMessage();
@@ -228,6 +260,9 @@ PROCESS_THREAD(Child_bracelet_process, ev, data)
     	PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
 	}
+	
+	// Self-explaining 
+	{
 	broadcast_close(&broadcast);
 	printf("Closed broadcast connection\n");
 	
@@ -236,7 +271,9 @@ PROCESS_THREAD(Child_bracelet_process, ev, data)
 	
 	printf("Start op mode\n");
 	operationMode = true;
+	}
 
+	// In Operation Mode sends a Unicast containing the INFO message every 10 seconds
 	while(1){
 		etimer_set(&et, CLOCK_SECOND * 10);
 		PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
