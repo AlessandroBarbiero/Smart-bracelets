@@ -16,9 +16,9 @@ In this work, we designed, implemented and tested a software prototype for smart
 * We created just two parents and two children, but if you want to simulate a more complex system you just need to create more "parent[i].c" and "child[i].c" files. These files should be identical, with just a different key hardcoded.
 
 * To simulate the system you just have to open Cooja and follow these steps
-*   Create a new simulation
-*   Add as many as sky-motes per type you want. We used two children and two parents.
-*   Start the simulation and see how the behavior changes as you change motes position.
+   Create a new simulation
+   Add as many as sky-motes per type you want. We used two children and two parents.
+   Start the simulation and see how the behavior changes as you change motes position.
 
 ## How it operates
 
@@ -32,8 +32,8 @@ In this work, we designed, implemented and tested a software prototype for smart
 
 * The X, Y coordinates are random numbers
 * The kinematic status is randomly selected according to the following probability distribution 
-*   P(STANDING) = P(WALKING) = P(RUNNING) = 0.3
-*   P(FALLING) = 0.1
+   P(STANDING) = P(WALKING) = P(RUNNING) = 0.3
+   P(FALLING) = 0.1
 
 ## Contacts
 
