@@ -14,7 +14,7 @@ In this work, we designed, implemented and tested a software prototype for smart
 ## How to use
 
 * The software can be used as-is, however is possible to modify the behavior. You can edit the ".c" and ".h" files depending on your goal
-* We created just two parents and two childs, but if you want to simulate a more complex system you just need to create more "parent<<i>>.c" and "child<<i>>.c" files. These files should be identical, with just a different key hardcoded.
+* We created just two parents and two childs, but if you want to simulate a more complex system you just need to create more "parent[i].c" and "child[i].c" files. These files should be identical, with just a different key hardcoded.
 
 * To simulate the system you just have to open Cooja and follow these steps
 * * Create a new simulation
