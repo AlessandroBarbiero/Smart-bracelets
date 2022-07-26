@@ -2,7 +2,7 @@
 
 ## Description
 
-In this work, we designed, implemented and tested a software prototype for smart bracelets. These bracelets are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far or falls. We worked on a Virtual Machine ([Oracle's VirtualBox](https://www.virtualbox.org/)), but it's not necessary.
+In this work, we designed, implemented and tested a software prototype for smart bracelets. These bracelets are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far or falls. 
 
 ## Prerequisities
 
@@ -34,6 +34,8 @@ In this work, we designed, implemented and tested a software prototype for smart
 * The kinematic status is randomly selected according to the following probability distribution 
    * P(STANDING) = P(WALKING) = P(RUNNING) = 0.3
    * P(FALLING) = 0.1
+
+> To see the report -> [Report](Report%20Smart%20Bracelets.pdf)
 
 ## Contacts
 
