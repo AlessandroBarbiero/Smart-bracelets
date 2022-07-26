@@ -1,0 +1,111 @@
+[
+    {
+        "id": "b5d1af96.0416f8",
+        "type": "tab",
+        "label": "Project Smart Bracelet IoT",
+        "disabled": false,
+        "info": "This Flow takes as input messages coming \nfrom a tcp connection\nand filter only ALERT messages.\n\nMade by \nAlessandro Barbiero\nRoberto Alessandri"
+    },
+    {
+        "id": "e7a9e30b.88bcf",
+        "type": "tcp in",
+        "z": "b5d1af96.0416f8",
+        "name": "Parent1",
+        "server": "client",
+        "host": "localhost",
+        "port": "60001",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "a0e68e0e.a95688"
+            ]
+        ]
+    },
+    {
+        "id": "d4c66999.04cea",
+        "type": "debug",
+        "z": "b5d1af96.0416f8",
+        "name": "Parent1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 520,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f742a368.0ff4c8",
+        "type": "tcp in",
+        "z": "b5d1af96.0416f8",
+        "name": "Parent2",
+        "server": "client",
+        "host": "localhost",
+        "port": "60003",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "3c7ad400.c238a4"
+            ]
+        ]
+    },
+    {
+        "id": "6f207f8c.924ad",
+        "type": "debug",
+        "z": "b5d1af96.0416f8",
+        "name": "Parent2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 520,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3c7ad400.c238a4",
+        "type": "function",
+        "z": "b5d1af96.0416f8",
+        "name": "Filter ALERT",
+        "func": "if(msg.payload.includes(\"ALARM\"))\n    return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 260,
+        "wires": [
+            [
+                "6f207f8c.924ad"
+            ]
+        ]
+    },
+    {
+        "id": "a0e68e0e.a95688",
+        "type": "function",
+        "z": "b5d1af96.0416f8",
+        "name": "Filter ALERT",
+        "func": "if(msg.payload.includes(\"ALARM\"))\n    return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "d4c66999.04cea"
+            ]
+        ]
+    }
+]

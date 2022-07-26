@@ -11,8 +11,11 @@
 #include <stdio.h>
 #define DIM_KEY 20
 
+
 // Definition of Static Variables //
 static char key[DIM_KEY] = PRELOADED_KEY;
+
+static struct ctimer timer;
 static bool pairing = true;
 static bool unicastReceived = false;
 static bool operationMode = false;
@@ -26,6 +29,13 @@ struct position_t{
 };
 
 static struct position_t childPosition;
+
+static void callbackMissing(void *ptr)
+ {
+   ctimer_reset(&timer);
+   printf("ALARM: MISSING last position -> x = %d, y = %d\n", childPosition.x, childPosition.y);
+
+ }
 
 enum STATUS{
 	STANDING,
@@ -117,9 +127,11 @@ static void recv_uc(struct unicast_conn *c, const linkaddr_t *from)
 			message = *((struct message_t*) packetbuf_dataptr());
 			printf("x = %d, y = %d, status = %s\n", message.position.x, message.position.y, toString(message.status));
 			childPosition = message.position;
-			if(message.status == FALLING)
+			if(message.status == FALLING){
 				printf("ALARM: FALL x = %d, y = %d\n", message.position.x, message.position.y);
-			
+			}
+			//If a message arrive restart the timer 
+			ctimer_restart(&timer);
 		}
 	}
 }
@@ -208,14 +220,12 @@ PROCESS_THREAD(Parent_bracelet_process, ev, data)
 
 
 	// In Operation Mode, if the mote doesn't receive the unicast INFO message within 60 seconds, it fires a MISSING ALARM
+	ctimer_set(&timer, CLOCK_SECOND * 60, callbackMissing, NULL);
 	while(1){
-		messageArrived = false;
-		etimer_set(&et, CLOCK_SECOND * 60);
-		PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-		if(!messageArrived)
-			printf("ALARM: MISSING last position -> x = %d, y = %d\n", childPosition.x, childPosition.y);
-    }
+		PROCESS_WAIT_EVENT();
+	}
 
+	
   PROCESS_END();
 }
 

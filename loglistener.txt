@@ -1,0 +1,146 @@
+00:00.495	ID:2	Rime started with address 2.0
+00:00.503	ID:2	MAC 02:00:00:00:00:00:00:00 Contiki-bc2e445 started. Node id is set to 2.
+00:00.513	ID:2	nullsec CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:00.515	ID:2	Starting 'Child Bracelet'
+00:00.519	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:00.607	ID:4	Rime started with address 4.0
+00:00.616	ID:4	MAC 04:00:00:00:00:00:00:00 Contiki-bc2e445 started. Node id is set to 4.
+00:00.625	ID:4	nullsec CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:00.627	ID:4	Starting 'Child Bracelet'
+00:00.631	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:00.641	ID:1	Rime started with address 1.0
+00:00.650	ID:1	MAC 01:00:00:00:00:00:00:00 Contiki-bc2e445 started. Node id is set to 1.
+00:00.659	ID:1	nullsec CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:00.661	ID:1	Starting 'Parent Bracelet'
+00:00.665	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:01.158	ID:3	Rime started with address 3.0
+00:01.167	ID:3	MAC 03:00:00:00:00:00:00:00 Contiki-bc2e445 started. Node id is set to 3.
+00:01.176	ID:3	nullsec CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:01.178	ID:3	Starting 'Parent Bracelet'
+00:01.182	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:02.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:02.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:02.663	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:03.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:04.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:04.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:04.663	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:05.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:06.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:06.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:06.663	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:07.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:08.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:08.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:08.663	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:09.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:10.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:10.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:10.663	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:10.803	ID:3	This (;c{?K|JNy?3)'D2KJ+%7) is NOT my key
+00:11.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:11.285	ID:1	This (M6#Bhe5nD&Thrht59U7u) is NOT my key
+00:12.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:12.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:12.663	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:12.802	ID:3	This (;c{?K|JNy?3)'D2KJ+%7) is NOT my key
+00:13.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:13.284	ID:1	This (M6#Bhe5nD&Thrht59U7u) is NOT my key
+00:14.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:14.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:14.663	ID:1	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:14.802	ID:3	This (;c{?K|JNy?3)'D2KJ+%7) is NOT my key
+00:15.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:15.284	ID:1	This (M6#Bhe5nD&Thrht59U7u) is NOT my key
+00:16.517	ID:2	Broadcast message sent: ;c{?K|JNy?3)'D2KJ+%7
+00:16.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:16.660	ID:1	Paired device -> key found, Address: 2.0
+00:16.662	ID:1	Closed broadcast connection
+00:16.664	ID:1	Message unicast sent
+00:16.665	ID:1	Start op mode
+00:16.764	ID:2	Paired device -> unicast message received, Address: 1.0
+00:17.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:18.515	ID:2	Closed broadcast connection
+00:18.516	ID:2	Start op mode
+00:18.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:19.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:20.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:21.180	ID:3	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:22.629	ID:4	Broadcast message sent: M6#Bhe5nD&Thrht59U7u
+00:22.676	ID:3	Paired device -> key found, Address: 4.0
+00:23.178	ID:3	Closed broadcast connection
+00:23.180	ID:3	Message unicast sent
+00:23.181	ID:3	Start op mode
+00:23.252	ID:4	Paired device -> unicast message received, Address: 3.0
+00:24.627	ID:4	Closed broadcast connection
+00:24.628	ID:4	Start op mode
+00:28.519	ID:2	Unicast message sent: x = -24247, y = 6734, status = FALLING
+00:28.658	ID:1	A message arrived from the child
+00:28.661	ID:1	x = -24247, y = 6734, status = FALLING
+00:28.664	ID:1	ALARM: FALL x = -24247, y = 6734
+00:34.631	ID:4	Unicast message sent: x = 6835, y = 6256, status = RUNNING
+00:34.675	ID:3	A message arrived from the child
+00:34.678	ID:3	x = 6835, y = 6256, status = RUNNING
+00:38.519	ID:2	Unicast message sent: x = -13188, y = 2309, status = RUNNING
+00:38.656	ID:1	A message arrived from the child
+00:38.659	ID:1	x = -13188, y = 2309, status = RUNNING
+00:44.631	ID:4	Unicast message sent: x = 31854, y = -20721, status = WALKING
+00:44.673	ID:3	A message arrived from the child
+00:44.676	ID:3	x = 31854, y = -20721, status = WALKING
+00:48.519	ID:2	Unicast message sent: x = -13429, y = 13416, status = STANDING
+00:48.658	ID:1	A message arrived from the child
+00:48.662	ID:1	x = -13429, y = 13416, status = STANDING
+00:54.631	ID:4	Unicast message sent: x = -5723, y = -3718, status = RUNNING
+00:54.675	ID:3	A message arrived from the child
+00:54.678	ID:3	x = -5723, y = -3718, status = RUNNING
+00:58.519	ID:2	Unicast message sent: x = 9510, y = -27289, status = WALKING
+00:58.658	ID:1	A message arrived from the child
+00:58.661	ID:1	x = 9510, y = -27289, status = WALKING
+01:04.631	ID:4	Unicast message sent: x = -31352, y = 31521, status = WALKING
+01:04.673	ID:3	A message arrived from the child
+01:04.676	ID:3	x = -31352, y = 31521, status = WALKING
+01:08.519	ID:2	Unicast message sent: x = 21437, y = 28082, status = WALKING
+01:14.631	ID:4	Unicast message sent: x = 28935, y = 29236, status = STANDING
+01:14.673	ID:3	A message arrived from the child
+01:14.676	ID:3	x = 28935, y = 29236, status = STANDING
+01:18.519	ID:2	Unicast message sent: x = 10368, y = 28345, status = STANDING
+01:24.631	ID:4	Unicast message sent: x = 13778, y = 5795, status = RUNNING
+01:24.675	ID:3	A message arrived from the child
+01:24.678	ID:3	x = 13778, y = 5795, status = RUNNING
+01:28.519	ID:2	Unicast message sent: x = -13729, y = 19628, status = WALKING
+01:34.631	ID:4	Unicast message sent: x = 27993, y = -8930, status = WALKING
+01:34.675	ID:3	A message arrived from the child
+01:34.678	ID:3	x = 27993, y = -8930, status = WALKING
+01:38.519	ID:2	Unicast message sent: x = 266, y = -21125, status = STANDING
+01:44.632	ID:4	Unicast message sent: x = -11316, y = -31211, status = WALKING
+01:44.675	ID:3	A message arrived from the child
+01:44.679	ID:3	x = -11316, y = -31211, status = WALKING
+01:48.519	ID:2	Unicast message sent: x = 15345, y = 9174, status = RUNNING
+01:54.632	ID:4	Unicast message sent: x = -18661, y = 24760, status = STANDING
+01:58.519	ID:2	Unicast message sent: x = -31420, y = -22995, status = WALKING
+01:58.664	ID:1	ALARM: MISSING last position -> x = 9510, y = -27289
+02:04.631	ID:4	Unicast message sent: x = 29174, y = -22025, status = WALKING
+02:08.519	ID:2	Unicast message sent: x = 20723, y = -20048, status = RUNNING
+02:14.631	ID:4	Unicast message sent: x = 25293, y = -18558, status = RUNNING
+02:18.519	ID:2	Unicast message sent: x = -10322, y = 2383, status = WALKING
+02:24.631	ID:4	Unicast message sent: x = -28976, y = 24265, status = RUNNING
+02:28.519	ID:2	Unicast message sent: x = 28133, y = -16198, status = RUNNING
+02:34.631	ID:4	Unicast message sent: x = -7953, y = -14340, status = STANDING
+02:38.519	ID:2	Unicast message sent: x = 1736, y = 865, status = STANDING
+02:44.632	ID:4	Unicast message sent: x = -19238, y = -25333, status = STANDING
+02:44.681	ID:3	ALARM: MISSING last position -> x = -11316, y = -31211
+02:48.519	ID:2	Unicast message sent: x = -11449, y = -14476, status = WALKING
+02:48.658	ID:1	A message arrived from the child
+02:48.662	ID:1	x = -11449, y = -14476, status = WALKING
+02:54.631	ID:4	Unicast message sent: x = 7681, y = 17574, status = WALKING
+02:58.519	ID:2	Unicast message sent: x = -21230, y = 23779, status = STANDING
+02:58.658	ID:1	A message arrived from the child
+02:58.662	ID:1	x = -21230, y = 23779, status = STANDING
+03:04.631	ID:4	Unicast message sent: x = 6804, y = -26307, status = WALKING
+03:08.519	ID:2	Unicast message sent: x = -16999, y = -30626, status = WALKING
+03:08.658	ID:1	A message arrived from the child
+03:08.662	ID:1	x = -16999, y = -30626, status = WALKING
+03:14.631	ID:4	Unicast message sent: x = -23933, y = 19456, status = FALLING
+03:18.519	ID:2	Unicast message sent: x = -28404, y = -26027, status = WALKING
+03:18.658	ID:1	A message arrived from the child
+03:18.662	ID:1	x = -28404, y = -26027, status = WALKING
