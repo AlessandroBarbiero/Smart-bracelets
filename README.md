@@ -2,7 +2,7 @@
 
 ## Description
 
-In this work, we designed, implemented and tested a software prototype for smart bracelets. These braceletes are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far or falls. We worked on a Virtual Machine ([Oracle's VirtualBox](https://www.virtualbox.org/)), but is not necessary.
+In this work, we designed, implemented and tested a software prototype for smart bracelets. These braceletes are worn by a child and her/his parent to keep track of the child's position and trigger alerts when a child goes too far or falls. We worked on a Virtual Machine ([Oracle's VirtualBox](https://www.virtualbox.org/)), but it's not necessary.
 
 ## Prerequisities
 
@@ -12,7 +12,7 @@ In this work, we designed, implemented and tested a software prototype for smart
 
 ## How to use
 
-* The software can be used as-is, however is possible to modify the behavior. You can edit the ".c" and ".h" files depending on your goal
+* The software can be used as-is, however it's possible to modify the behavior. You can edit the ".c" and ".h" files depending on your goal
 * We created just two parents and two children, but if you want to simulate a more complex system you just need to create more "parent[i].c" and "child[i].c" files. These files should be identical, with just a different key hardcoded.
 
 * To simulate the system you just have to open Cooja and follow these steps
