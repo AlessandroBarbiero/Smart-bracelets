@@ -19,7 +19,7 @@ In this work, we designed, implemented and tested a software prototype for smart
 * To simulate the system you just have to open Cooja and follow these steps
 * * Create a new simulation
 * * Add as many as sky-motes per type you want. We used two childs and two parents.
-* * Start the simulation and see how the behavior changes as you change the motes postion.
+* * Start the simulation and see how the behavior changes as you change motes postion.
 
 ## How it operates
 
@@ -34,7 +34,7 @@ In this work, we designed, implemented and tested a software prototype for smart
 * The X, Y coordinates are random numbers
 * The kinematic status is randomly selected according to the following probability distribution 
 * * P(STANDING) = P(WALKING) = P(RUNNING) = 0.3
-* * P(F ALLING) = 0.1
+* * P(FALLING) = 0.1
 
 ## Contacts
 
