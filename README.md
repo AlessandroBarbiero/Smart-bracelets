@@ -7,7 +7,7 @@ In this work, we designed, implemented and tested a software prototype for smart
 ## Prerequisities
 
 * A Virtual Machine. We used [Oracle's VirtualBox](https://www.virtualbox.org/)
-* To have installed in the VM, [Contiki](http://www.contiki-os.org/) Operating System
+* To have installed in the VM [Contiki](http://www.contiki-os.org/) Operating System
 * To have installed in the VM [Cooja](https://github.com/contiki-os/contiki/wiki/An-Introduction-to-Cooja) Network Simulator
 * To have installed in the VM [Node-RED](https://nodered.org/) Low-Code, Event-Driven Programming Tool 
 
